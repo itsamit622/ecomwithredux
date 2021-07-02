@@ -36,3 +36,38 @@
     transform: rotate(360deg);
   }
 }
+
+.marginForm {
+  margin-top: 110px;
+  background-color: aliceblue;
+  
+
+}
+.setHeight {
+
+  background-color: black;
+  height: 500px;
+}
+.h1color {
+  color: aqua;
+}
+.dashcolor {
+  color: cadetblue;
+}
+.table-wali {
+  position: relative;
+    top: -450px;
+    left: 120px;
+
+  }
+  .Dashboard-color {
+    background-color: aquamarine;
+  }
+
+  .list {
+    list-style: none;
+    display: flex;
+  }
+  .list-style {
+    display: table-caption
+  }
