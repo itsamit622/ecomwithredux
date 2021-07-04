@@ -17,10 +17,18 @@ export const postcontentfromactions = function(data){
 }
 
 
-export const loadcontentfromactions = function(){
+export const loadcontentfromactions = function(url){
+  let link=""
+  if(url!== undefined){
+    link = "/products2" + url
+  }
+  else {
+    link ="/products2"
+  }
+  
    
   return (dispatch)=>{
-      HttpsReq.get("/products2").then((res)=>{
+      HttpsReq.get(link).then((res)=>{
         console.log("mycontent",res.data)
           
           let action = {

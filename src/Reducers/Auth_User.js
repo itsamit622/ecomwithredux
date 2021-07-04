@@ -15,8 +15,9 @@ function AUTH_USER(
   ) {
     switch (action.type) {
      case AUTH_SIGNIN:
+       console.log("Sdsdsd",action.payload)
 
-     return {...state,isLogin:true}
+     return {...state, isLogin:true}
      
      case AUTH_SIGNOUT:
       return {...state,isLogin:false}

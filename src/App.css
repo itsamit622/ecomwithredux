@@ -71,3 +71,15 @@
   .list-style {
     display: table-caption
   }
+  .register {
+    position: relative;
+    left: 230px;
+    top: 90px;
+  }
+
+.cartlength{
+  color: red;
+    position: absolute;
+    right: 120px;
+    background-color: greenyellow;
+}
