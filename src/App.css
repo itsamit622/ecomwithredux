@@ -64,13 +64,13 @@
     background-color: aquamarine;
   }
 
-  .list {
+  /* .list {
     list-style: none;
     display: flex;
   }
   .list-style {
     display: table-caption
-  }
+  } */
   .register {
     position: relative;
     left: 230px;
@@ -82,4 +82,55 @@
     position: absolute;
     right: 120px;
     background-color: greenyellow;
+}
+.price {
+  text-decoration: line-through;
+}
+.row {
+  display: flex;
+  width: 100%;
+}
+.col-3 {
+  width: 25%;
+
+}
+
+.mtb-30 {
+  margin: 30px auto;
+}
+.product_name {
+  margin: 10px 0;
+  text-transform: capitalize;
+  color: #707070;
+}
+.product_discount{
+
+  left: 180px;
+  position: relative;
+}
+ .product__img {
+  width:"300px"; 
+  height:"300px";
+  overflow: hidden;
+  
+
+} 
+.product__img img{
+  transition: all .5s linear;
+  animation: imageTransition .5s linear ;
+}
+.product__img img:hover {
+	transform: scale(1.2);
+}
+.col-6 {
+  width: 50px;
+}
+.btn-class{
+  position: relative;
+  left: 96px;
+}
+
+.cartlength{
+  bottom: 2px;
+    left: 100%;
 }

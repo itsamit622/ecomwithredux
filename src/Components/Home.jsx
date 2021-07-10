@@ -14,6 +14,7 @@ import { FaAngular } from 'react-icons/fa';
 import {VscAccount } from "react-icons/vsc";
 import {BiCart } from "react-icons/bi";
 import Cart from "./Cart";
+import Home2 from "./Home2";
  function Home (props){
    console.log("myhome" ,props)
   useEffect( ()=>{
@@ -89,8 +90,8 @@ else {
 {nav}
 
 {Select}
-          <p className="cartlength">{props.cartproducts.length}</p>
-<Link to="/cart"><BiCart color="white" size={40}/></Link>
+          
+<Link to="/cart" className="position-relative"><BiCart color="white" size={40}/><p className="cartlength">{props.cartproducts.length}</p></Link>
         </Container>
        
       </Navbar>
@@ -99,7 +100,7 @@ else {
       
     
       
-
+      <Route  exact path="/"  component={Home2} />
       <Route  path="/products2"  component={Item} />
       <Route  path="/login"  component={UserLogin} />
       <Route  path="/register"  component={UserRegister} />
@@ -110,12 +111,12 @@ else {
     </div>
 }
 function mapStateToProps(state) {
-  console.log("myhome",  state.Auth_Client.users)
+  console.log("myhome",  state.Auth_Client.customer)
   return {
   
     "categoryList":state.Category_Reducer.category ,
     "login" : state.Auth_Client.isLogin,
-    "users" : state.Auth_Client.users,
+    "users" : state.Auth_Client.customer,
     "cartproducts":state.CART_REDUCER.cart
         }    
 }

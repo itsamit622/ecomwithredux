@@ -1,7 +1,7 @@
 import { AUTH_SIGNIN, AUTH_SIGNOUT } from "../Actions/ActionTypes";
 
 const IntialState = {
- users:[],
+ customer:[],
 
   isLogin: false,
 };
@@ -14,12 +14,13 @@ function Auth_Client(
   switch (action.type) {
     case AUTH_SIGNIN:
       console.log("mypayload", action.payload);
-      let addUsers=state.users.concat(action.payload)
-      return { ...state,users:addUsers, isLogin:true,  };
+      let addcustomer=state.customer.concat(action.payload)
+      console.log("addusers",addcustomer)
+      return { ...state,customer:addcustomer, isLogin:true,  };
 
     case AUTH_SIGNOUT:
       console.log("mystayeuser",state.users)
-      return { ...state,users:"", isLogin: false };
+      return { ...state,customer:"", isLogin: false };
   }
 
   return state;

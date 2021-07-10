@@ -48,9 +48,17 @@ function UserLogin(props) {
        })
     }
 
-    if(props.login ===true){
-        props.history.push("/")
+    if(props.login ===true && props.cart.length>0){
+        props.history.push("/cart")
     }
+    else if(props.login=== true){
+        props.history.push("/home")
+
+    }
+    // else if(props.login===true && props.cart.length>0){
+    //     props.history.push("/about")
+
+    // }
     function submitme2(event) {
         event.preventDefault()
         props.auth2(userAuth)
@@ -129,7 +137,9 @@ function mapStateToProps(state) {
     return {
 
 
-        "login": state.Auth_Client.isLogin
+        "login": state.Auth_Client.isLogin,
+        "cart":state.CART_REDUCER.cart,
+        
 
 
     }
