@@ -5,7 +5,9 @@ import {CART_PRODUCTS ,REMOVE_CART_PRODUCTS ,INC_COUNT,DEC_COUNT}  from "../Acti
 
 const IntialState ={
 
-    cart:[]
+    cart:[],
+    subtotal1 :0,
+    subCount1 : 0
 }
 
 function CART_REDUCER(
@@ -17,6 +19,9 @@ function CART_REDUCER(
      case CART_PRODUCTS:
        console.log("action",action.payload)
        action.payload.count = 1;
+       let offerprice = action.payload.price - action.payload.discount
+      //  console.log("action",offerprice)
+       action.payload.total=offerprice * action.payload.count
        let check=state.cart.every((item)=>{
          return item.id !==action.payload.id
        })
@@ -30,6 +35,8 @@ function CART_REDUCER(
              
              let itemForCountIncrease = state.cart.find((item) => item.id == action.payload.id);
              itemForCountIncrease.count += 1;
+             let offerprice = itemForCountIncrease.price - itemForCountIncrease.discount
+             itemForCountIncrease.total = offerprice* itemForCountIncrease.count;
              let oldItems = state.cart.filter((item) => item.id != action.payload.id);
             
              return {...state,cart:[...oldItems, { ...itemForCountIncrease }]}
@@ -58,6 +65,9 @@ function CART_REDUCER(
         let cartDetail = state.cart.map(( singleCartProd )=>{
           if(singleCartProd.id === action.payload){
             singleCartProd.count++;
+            // singleCartProd.total =singleCartProd.price * singleCartProd.count
+            let offer_price =singleCartProd.price-singleCartProd.discount;
+              singleCartProd.total =offer_price * singleCartProd.count
           }
           return singleCartProd;
         });
@@ -70,6 +80,8 @@ function CART_REDUCER(
           let cartDetail2 = state.cart.map(( singleCartProd )=>{
             if(singleCartProd.id === action.payload && singleCartProd.count >1){
               singleCartProd.count--;
+              let offer_price =singleCartProd.price-singleCartProd.discount
+              singleCartProd.total =offer_price * singleCartProd.count
             }
             return singleCartProd;
           });

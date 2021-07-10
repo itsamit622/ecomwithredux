@@ -10,6 +10,15 @@ import { AiOutlineMinusCircle } from "react-icons/ai";
 function Cart(props){
 
 
+  let totals=props.cart_list.reduce(
+    //reduce go through the array and cartItem is the each item in the array
+    (storeTotal, cartItem) =>
+      storeTotal + cartItem.total * cartItem.count,
+    0 //0 is the start point of accumulatedTotal
+  );
+  
+
+
   function clearCart(id){
     props.delete(id)
 
@@ -82,6 +91,9 @@ else {
         </tbody>
         {/* <Button className="btn btn-primary" onClick={cartfunction} >Checkout</Button> */}
         {select}
+        <div>
+          Bag Total: {totals}
+        </div>
       </Table>
 
 
@@ -92,6 +104,8 @@ function mapStateToProps(state) {
     return {
       cart_list:state.CART_REDUCER.cart,
       "login" : state.Auth_Client.isLogin,
+      "total":state.CART_REDUCER.subtotal,
+      
           }    
   }
 

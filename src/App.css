@@ -102,10 +102,11 @@
   margin: 10px 0;
   text-transform: capitalize;
   color: #707070;
+  text-align: center;
 }
 .product_discount{
 
-  left: 180px;
+  left: 150px;
   position: relative;
 }
  .product__img {
