@@ -1,4 +1,4 @@
-import {CART_PRODUCTS ,REMOVE_CART_PRODUCTS ,INC_COUNT,DEC_COUNT} from "./ActionTypes"
+import {CART_PRODUCTS ,REMOVE_CART_PRODUCTS ,INC_COUNT,DEC_COUNT ,ADD_ADDRESS} from "./ActionTypes"
 
 
 export const addtocartfromactions = function(data){
@@ -11,6 +11,16 @@ export const addtocartfromactions = function(data){
       
     
     }
+    export const addaddresstocartfromactions = function(data){
+
+      
+      return {
+           type : ADD_ADDRESS,
+           payload :data
+       }
+     
+   
+   }
     export const deletecontentfromactions = function(id){
         console.log("delete id" ,id)
    

@@ -78,7 +78,7 @@ function UserLogin(props) {
                     <Form onSubmit={submitme2}>
                         <Form.Group >
                             <Form.Label>Email address</Form.Label>
-                            <Form.Control type="text" name="userId" onChange={onChangeHandler2} placeholder="Enter email" />
+                            <Form.Control type="text" name="email" onChange={onChangeHandler2} placeholder="Enter email" />
                             <Form.Text className="text-muted">
                                 We'll never share your email with anyone else.
                             </Form.Text>

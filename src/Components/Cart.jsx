@@ -4,18 +4,22 @@ import { IoIosRemoveCircleOutline } from "react-icons/io";
 import {decquantityfromactions, deletecontentfromactions ,incquantityfromactions} from "../Actions/Cart_Actions";
 import { BsPlusCircle} from "react-icons/bs";
 import { AiOutlineMinusCircle } from "react-icons/ai";
+import {Link} from "react-router-dom"
 
 
 
 function Cart(props){
+  
 
 
-  let totals=props.cart_list.reduce(
-    //reduce go through the array and cartItem is the each item in the array
-    (storeTotal, cartItem) =>
-      storeTotal + cartItem.total * cartItem.count,
-    0 //0 is the start point of accumulatedTotal
-  );
+  let totals=0
+  props.cart_list.forEach((item) => (totals += item.total));
+  // let totals=props.cart_list.reduce(
+  //   //reduce go through the array and cartItem is the each item in the array
+  //   (storeTotal, cartItem) =>
+  //     storeTotal + cartItem.total * cartItem.count,
+  //   0 //0 is the start point of accumulatedTotal
+  // );
   
 
 
@@ -44,7 +48,8 @@ function  cartfunction(){
   }
 let select=""
 if(props.cart_list.length>0 && props.login===true){
-  select= <Button onClick={cartfunction}>Checkout</Button>
+  select= <Link to="/ordersummary"><Button 
+     onClick={cartfunction}>Checkout</Button></Link>
 }
 else {
   select= <Button onClick={cartfunction}>Proceed</Button>

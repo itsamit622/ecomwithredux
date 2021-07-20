@@ -10,6 +10,7 @@ export const CART_PRODUCTS="CART-PRODUCTS"
 export const REMOVE_CART_PRODUCTS="REMOVE-PRODUCTS"
 export const INC_COUNT="INCREMENT"
 export const DEC_COUNT="DECREMENT"
+export const ADD_ADDRESS="ADDADRESS"
 
 
 

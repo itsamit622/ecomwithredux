@@ -22,16 +22,19 @@ function UserRegister(props){
         })
     }
 
+    function onSuccess(){
+        props.history.push("/login")
+    }
 
     function submitme(event) {
         // event.preventDefault()
         event.preventDefault()
-        props.post(userdetail)
+        props.post(userdetail, onSuccess )
         setuserdetail({
             
         })
         console.log("dadad",userdetail)
-        props.history.push("/login")
+        
 
     }
 
@@ -46,17 +49,23 @@ return  <div className="register">
                    
                     <h6>Sign up with your email and password</h6>
                     <Form onSubmit={submitme} >
-                        <Form.Group >
+                    <Form.Group >
                             <Form.Label>Name</Form.Label>
                             <Form.Control type="text" name="username" value={userdetail.username} onChange={onChangeHandler}  placeholder="Enter name" />
                         </Form.Group>
-                        <Form.Group >
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
+    <Form.Label>Email address</Form.Label>
+    <Form.Control type="email" name="email"  value={userdetail.email} placeholder="Enter email" onChange={onChangeHandler} />
+    
+  </Form.Group>
+                        
+                        {/* <Form.Group >
                             <Form.Label>UserId</Form.Label>
                             <Form.Control type="text" name="userId" value={userdetail.userId} onChange={onChangeHandler} placeholder="Enter userId" />
                             {/* <Form.Text className="text-muted">
                                 We'll never share your email with anyone else.
                             </Form.Text> */}
-                        </Form.Group>
+                        {/* </Form.Group> */} 
 
                         <Form.Group >
                             <Form.Label>Password</Form.Label>

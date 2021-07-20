@@ -3,19 +3,36 @@ import { Navbar, Container, Nav, NavDropdown, Button } from "react-bootstrap";
 import { Link, Route, Switch, BrowserRouter } from 'react-router-dom';
 import Products2 from "./Products2"
 import { connect } from "react-redux"
-import React, { useEffect } from "react";
+import React, { useEffect ,useState } from "react";
 import { loadcontentfromactions } from "../Actions/CategoryAction";
 import Item from "./Itemcollection"
 import UserLogin from "./UserLogin"
 import { logOutfromAction } from "../Actions/UserAuthAction"
 import UserRegister from "./UserRegister"
-
 import { FaAngular } from 'react-icons/fa';
 import { VscAccount } from "react-icons/vsc";
 import { BiCart } from "react-icons/bi";
 import Cart from "./Cart";
 import Home2 from "./Home2";
+import OrderSummary from "./OrderSummary";
+import Backdrop from "./Backdrop";
+import SlideDrawer from "./SlideDrawer";
+import Payment from "./Payment";
 function Home(props) {
+  const [drawerOpen,setdrawerOpen] =useState(false)
+
+
+
+  let drawerToggleClickHandler = () => {
+    setdrawerOpen (!drawerOpen )
+  }
+let backdropClickHandler = () => {
+  setdrawerOpen(false)
+  }
+      let backdrop;
+      if(drawerOpen){
+        backdrop = <Backdrop close={backdropClickHandler}/>;
+       }
   console.log("myhome", props)
   useEffect(() => {
     props.loadAll()
@@ -121,7 +138,12 @@ console.log("sdsdsd", totalcount)
     <Route path="/login" component={UserLogin} />
     <Route path="/register" component={UserRegister} />
     <Route path="/cart" component={Cart}  />
-
+    < SlideDrawer show={drawerOpen}/>
+         { backdrop }
+    {/* <Route path="/ordersummary" component={OrderSummary}  /> */}
+    <Route path="/ordersummary" component={() => <OrderSummary toggle={drawerToggleClickHandler}/>}  />
+    <Route path="/payment" component={Payment}  />
+        
     {/* </BrowserRouter> */}
 
   </div>

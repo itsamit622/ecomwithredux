@@ -6,6 +6,10 @@ const IntialState = {
   isLogin: false,
 };
 
+if(localStorage.getItem("token")){
+  IntialState.isLogin = true;
+}
+
 function Auth_Client(
   state = IntialState,
 
@@ -15,11 +19,14 @@ function Auth_Client(
     case AUTH_SIGNIN:
       console.log("mypayload", action.payload);
       let addcustomer=state.customer.concat(action.payload)
-      console.log("addusers",addcustomer)
-      return { ...state,customer:addcustomer, isLogin:true,  };
+      console.log("addusers",addcustomer);
+      console.log("action.payload", action.payload)
+      localStorage.setItem("token", action.payload.access_token)
+      return { ...state,customer:addcustomer, isLogin:true };
 
     case AUTH_SIGNOUT:
       console.log("mystayeuser",state.users)
+      localStorage.removeItem("token")
       return { ...state,customer:"", isLogin: false };
   }
 

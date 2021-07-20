@@ -5,43 +5,59 @@ export const Auth_Checker_Action2 = function (value) {
   console.log("value", value);
 
   return (dispatch) => {
-    HttpsReq.get("/Users2", { params: value }).then((res) => {
+    HttpsReq.post("/auth/login",  value ).then((res) => {
       console.log("hello", res.data);
 
       //  if (res.data[0].userId = value.userId && res.data[0].password ==value.password  ) {
-      if (res.data.length > 0) {
+      // if (res.data.length > 0) {
         let action = {
           type: AUTH_SIGNIN,
           payload: res.data,
         };
 
         dispatch(action);
-      } else alert("hello");
+      // } else alert("hello");
     });
   };
 };
 
-export const postcontentfromactions = function (data) {
+export const postcontentfromactions = function (data, cb) {
   console.log("mycontentfromuserlogin", data);
 
   return (dispatch) => {
-    HttpsReq.get("/Users2", { params: { userId: data.userId } }).then((res) => {
-      if (res.data.length === 0) {
-        HttpsReq.post("/Users2", data).then((res) => {
-          console.log("mycontentfromuserlogin", res.data);
-
-          let action = {
-            type: ADDPRODUCTS,
-            payload: "",
-          };
-          dispatch(action);
-        });
-      } else {
-        alert("User ID already taken");
-      }
+    HttpsReq.post("/auth/register", data ).then((res) => {
+      console.log("mytoken",res.data)
+       
+        let action = {
+          type: AUTH_SIGNIN,
+          payload: res.data,
+        };
+        localStorage.setItem("token", res.data.access_token )
+        dispatch(action);
+        cb();
+  
+    }).catch((error)=>{
+      console.log("error", error.response);
+      alert(error.response.data.message)
     });
   };
 };
+//       // if (res.data.length === 0) {
+//         HttpsReq.post("/Users2", data).then((res) => {
+//           console.log("mycontentfromuserlogin", res.data);
+
+//           let action = {
+//             type: ADDPRODUCTS,
+//             payload: "",
+//           };
+//           dispatch(action);
+//         });
+//       // } else {
+//       //   alert("User ID already taken");
+//       // }
+//     });
+//   };
+// };
 
 export const logOutfromAction = function () {
   return {

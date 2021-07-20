@@ -1,4 +1,5 @@
-import {CART_PRODUCTS ,REMOVE_CART_PRODUCTS ,INC_COUNT,DEC_COUNT}  from "../Actions/ActionTypes"
+import { connect } from "react-redux";
+import {CART_PRODUCTS ,REMOVE_CART_PRODUCTS ,INC_COUNT,DEC_COUNT ,ADD_ADDRESS}  from "../Actions/ActionTypes"
 
 
 
@@ -6,8 +7,7 @@ import {CART_PRODUCTS ,REMOVE_CART_PRODUCTS ,INC_COUNT,DEC_COUNT}  from "../Acti
 const IntialState ={
 
     cart:[],
-    subtotal1 :0,
-    subCount1 : 0
+    address:[]
 }
 
 function CART_REDUCER(
@@ -121,6 +121,12 @@ function CART_REDUCER(
         // return {...state,cart:newstate3} 
 
 
+    case ADD_ADDRESS:
+      console.log("cartadreeessreducer",action.payload)
+      let newstate4 =state.address.concat(action.payload)
+      console.log("Dsdada",newstate4)
+      
+      return{...state,address:newstate4}
 
 
     }
