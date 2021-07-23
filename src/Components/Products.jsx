@@ -1,19 +1,19 @@
 import { connect } from "react-redux";
-import { postcontentfromactions ,loadcontentfromactions ,deletecontentfromactions} from "../Actions/ProductsAction";
-import React, { useState,useEffect } from "react";
+import { postcontentfromactions, loadcontentfromactions, deletecontentfromactions } from "../Actions/ProductsAction";
+import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Table, Button, Form } from "react-bootstrap";
 import Products2 from "./Products2";
 
 function Products(props) {
   const [form, setform] = useState(false);
   const [products, setproducts] = useState({});
-console.log("myprops", props)
-  
+  console.log("myprops", props)
 
 
 
-function onClickHandler(event) {
-  console.log("myid",event.target.value,event.target.name)
+
+  function onClickHandler(event) {
+    console.log("myid", event.target.value, event.target.name)
     setproducts({
       ...products,
       [event.target.name]: event.target.value,
@@ -23,8 +23,8 @@ function onClickHandler(event) {
     event.preventDefault();
     props.postme(products);
     setform(false)
-    
-    
+
+
   }
 
   function setdetails() {
@@ -32,44 +32,44 @@ function onClickHandler(event) {
   }
 
 
-useEffect( ()=>{
+  useEffect(() => {
     props.loadAll()
-   
-}, [] )
+
+  }, [])
 
 
-function deleteHandler(id){
-  console.log("myid",id)
-  props.deleteMe(id)
-}
+  function deleteHandler(id) {
+    console.log("myid", id)
+    props.deleteMe(id)
+  }
 
-// function categoryList(){
-//   return props.categoryList.map((values)=>{
-//     <div>
-//     <option name="categoryId" value={value.id}>{values.title}</option></div>
+  // function categoryList(){
+  //   return props.categoryList.map((values)=>{
+  //     <div>
+  //     <option name="categoryId" value={value.id}>{values.title}</option></div>
 
-//   })
-// }
+  //   })
+  // }
 
-function productsList(){
+  function productsList() {
 
-  return props.list.map(value=>{
-    console.log("productslis",value.Title)
-    return <>
-       <tr key={value.id}>
-            <td>{value.id}</td>
-            <td>{value.title}</td>
-            <td>{value.description}</td>
-            <td>{value.price} $</td>
-            <td>{value.discount} $</td>
-            <td><img src={value.imageurl} width="100px" height="100" /></td>
-            <td>{value.categoryId}</td>
-            <td> <button className="btn btn-danger" onClick={()=>{deleteHandler(value.id)}}>delete</button>   </td>
-          </tr>
+    return props.list.map(value => {
+      console.log("productslis", value.Title)
+      return <>
+        <tr key={value.id}>
+          <td>{value.id}</td>
+          <td>{value.title}</td>
+          <td>{value.description}</td>
+          <td>{value.price} $</td>
+          <td>{value.discount} $</td>
+          <td><img src={value.imageurl} width="100px" height="100" /></td>
+          <td>{value.categoryId}</td>
+          <td> <button className="btn btn-danger" onClick={() => { deleteHandler(value.id) }}>delete</button>   </td>
+        </tr>
 
-    </>
-  })
-}
+      </>
+    })
+  }
 
 
   let value = "";
@@ -86,17 +86,17 @@ function productsList(){
             <th>image</th>
             <th>CategoryId</th>
             <th>Delete</th>
-            
+
             <th>
               <Button className="btn btn-primary" onClick={setdetails}>
-                
+
                 Add
               </Button>
             </th>
           </tr>
         </thead>
         <tbody>
-        {productsList()}
+          {productsList()}
           {/* <tr>
       <td>2</td>
       <td>Jacob</td>
@@ -154,7 +154,7 @@ function productsList(){
             placeholder="enter imageurl"
             onChange={onClickHandler}
           />
-          
+
         </Form.Group>
         <Form.Group className="mb-3" >
           <Form.Label>discount</Form.Label>
@@ -164,15 +164,15 @@ function productsList(){
             placeholder="enter discount"
             onChange={onClickHandler}
           />
-          
+
         </Form.Group>
-        
-        <select name ="categoryId"   onChange={onClickHandler}>
-        <option   Value="">Please choose one option</option>
-        {props.categoryList.map((single) =>
-         <option   Value={single.id}>{single.title}</option>
-         )}
-</select>
+
+        <select name="categoryId" onChange={onClickHandler}>
+          <option Value="">Please choose one option</option>
+          {props.categoryList.map((single) =>
+            <option Value={single.id}>{single.title}</option>
+          )}
+        </select>
 
         <Form.Group className="mb-3" controlId="formBasicCheckbox">
           <Form.Check type="checkbox" label="Check me out" />
@@ -183,7 +183,7 @@ function productsList(){
       </Form>
     );
   }
- 
+
 
   return (
     <div>
@@ -197,12 +197,12 @@ function productsList(){
 function mapStateToProps(state) {
   console.log("mystate", state)
   return {
-    list:state.ProductsReducer.products,
-    categoryList:state.Category_Reducer.category
-        }    
+    list: state.ProductsReducer.products,
+    categoryList: state.Category_Reducer.category
+  }
 }
 
 
 
-export default connect(mapStateToProps, { postme: postcontentfromactions,loadAll: loadcontentfromactions,deleteMe:deletecontentfromactions })(Products);
+export default connect(mapStateToProps, { postme: postcontentfromactions, loadAll: loadcontentfromactions, deleteMe: deletecontentfromactions })(Products);
 

@@ -1,22 +1,16 @@
-import {Route, Switch} from "react-router-dom"
-import Login from "./Login"
-import Dashboard from "./Dashboard"
+import { Route, Switch } from "react-router-dom";
+import Login from "./Login";
+import Dashboard from "./Dashboard";
 
-function AdminPage(){
-
-    return  <div>
-
+function AdminPage() {
+  return (
+    <div>
       <Switch>
-       
-       <Route  path="/admin/login" component={Login} />
-       <Route  path="/admin/dashboard" component={Dashboard} /> 
-       
-
+        <Route path="/admin/login" component={Login} />
+        <Route path="/admin/dashboard" component={Dashboard} />
       </Switch>
-     </div>
-
-
-    
+    </div>
+  );
 }
 
-export default AdminPage
+export default AdminPage;

@@ -64,7 +64,7 @@ function Item(props) {
       <div className="products">
         <div className="product__img">
           <img src={value.imageurl} width="300px" height="300" />
-   <span className="btn-class">      <Button variant="light" onClick={()=>{myCart(value)}}  >  Add to cart</Button> </span> 
+          <span className="btn-class">      <Button variant="light" onClick={() => { myCart(value) }}  >  Add to cart</Button> </span>
 
         </div>
         <div className="product_name">

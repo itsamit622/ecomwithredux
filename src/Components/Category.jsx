@@ -1,17 +1,17 @@
 import { connect } from "react-redux";
-import { postcontentfromactions ,loadcontentfromactions ,deletecontentfromactions} from "../Actions/CategoryAction";
-import React, { useState,useEffect } from "react";
+import { postcontentfromactions, loadcontentfromactions, deletecontentfromactions } from "../Actions/CategoryAction";
+import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Table, Button, Form } from "react-bootstrap";
 
 function Category(props) {
   const [form, setform] = useState(false);
   const [category, setcategory] = useState({});
-console.log("myprops", props)
-  
+  console.log("myprops", props)
 
 
 
-function onClickHandler(event) {
+
+  function onClickHandler(event) {
     setcategory({
       ...category,
       [event.target.name]: event.target.value,
@@ -21,8 +21,8 @@ function onClickHandler(event) {
     event.preventDefault();
     props.postme(category);
     setform(false)
-    
-    
+
+
   }
 
   function setdetails() {
@@ -30,31 +30,31 @@ function onClickHandler(event) {
   }
 
 
-  useEffect( ()=>{
+  useEffect(() => {
     props.loadAll()
-   
-}, [] )
+
+  }, [])
 
 
-function deleteHandler(id){
-  console.log("myid",id)
-  props.deleteMe(id)
-}
-function categoryList(){
+  function deleteHandler(id) {
+    console.log("myid", id)
+    props.deleteMe(id)
+  }
+  function categoryList() {
 
-  return props.list.map(value=>{
-    console.log("categorylis",value.Title)
-    return <>
-       <tr key={value.id}>
-            <td>{value.id}</td>
-            <td>{value.title}</td>
-            <td>{value.description}</td>
-            <td> <button className="btn btn-danger" onClick={()=>{deleteHandler(value.id)}}>delete</button>   </td>
-          </tr>
+    return props.list.map(value => {
+      console.log("categorylis", value.Title)
+      return <>
+        <tr key={value.id}>
+          <td>{value.id}</td>
+          <td>{value.title}</td>
+          <td>{value.description}</td>
+          <td> <button className="btn btn-danger" onClick={() => { deleteHandler(value.id) }}>delete</button>   </td>
+        </tr>
 
-    </>
-  })
-}
+      </>
+    })
+  }
 
 
   let value = "";
@@ -69,14 +69,14 @@ function categoryList(){
             <th>Delete</th>
             <th>
               <Button className="btn btn-primary" onClick={setdetails}>
-                
+
                 Add
               </Button>
             </th>
           </tr>
         </thead>
         <tbody>
-        {categoryList()}
+          {categoryList()}
           {/* <tr>
       <td>2</td>
       <td>Jacob</td>
@@ -125,7 +125,7 @@ function categoryList(){
       </Form>
     );
   }
- 
+
 
   return (
     <div>
@@ -139,11 +139,11 @@ function categoryList(){
 function mapStateToProps(state) {
   console.log("mystate", state)
   return {
-    list:state.Category_Reducer.category
-        }    
+    list: state.Category_Reducer.category
+  }
 }
 
 
 
-export default connect(mapStateToProps, { postme: postcontentfromactions,loadAll: loadcontentfromactions,deleteMe:deletecontentfromactions })(Category);
+export default connect(mapStateToProps, { postme: postcontentfromactions, loadAll: loadcontentfromactions, deleteMe: deletecontentfromactions })(Category);
 
