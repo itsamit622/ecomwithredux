@@ -18,16 +18,14 @@ function Auth_Client(
   switch (action.type) {
     case AUTH_SIGNIN:
       console.log("mypayload", action.payload);
-      let addcustomer=state.customer.concat(action.payload)
-      console.log("addusers",addcustomer);
       console.log("action.payload", action.payload)
       localStorage.setItem("token", action.payload.access_token)
-      return { ...state,customer:addcustomer, isLogin:true };
+      return { ...state,isLogin:true };
 
     case AUTH_SIGNOUT:
       console.log("mystayeuser",state.users)
       localStorage.removeItem("token")
-      return { ...state,customer:"", isLogin: false };
+      return { ...state, isLogin: false };
   }
 
   return state;

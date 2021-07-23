@@ -33,16 +33,17 @@ let backdropClickHandler = () => {
       if(drawerOpen){
         backdrop = <Backdrop close={backdropClickHandler}/>;
        }
+       function clickHandler() {
+        console.log("hello")
+        props.logOut()
+      }
   console.log("myhome", props)
   useEffect(() => {
     props.loadAll()
 
-  }, [])
+  }, [props.login])
 
-  function clickHandler() {
-    console.log("hello")
-    props.logOut()
-  }
+
 //   if(props.cartproducts !== undefined){
 //   let total2 = props.cartproducts.reduce((item) => {
 //     return item.total * item.count
@@ -58,7 +59,7 @@ if (props.cartproducts.length>0){
   0 //0 is the start point of accumulatedTotal
 );
 }
-console.log("sdsdsd", totalcount)
+console.log("sdsdsd", props)
   
   let Select = ""
   if (props.login === false) {
@@ -88,6 +89,11 @@ console.log("sdsdsd", totalcount)
     nav = ""
 
   }
+//   let token  = localStorage.getItem("token");
+//   let headers=""
+// if(token){
+//     headers = 
+// }
 
   return <div>
     {/* <BrowserRouter> */}
@@ -105,12 +111,13 @@ console.log("sdsdsd", totalcount)
                 Products2
               </Link> */}
 
-            {props.categoryList.map((single) =>
-              <Link className="nav-link" to={"/products2?categoryId=" + single.id}>{single.title}</Link>
-
-            )}
+           
 
             {/* {props.users.map((details)=>{ */}
+           { props.categoryList.map((single) =>
+      <Link className="nav-link"  to={"/products2?categoryId=" + single.id}>{single.title}</Link>
+
+    )}
 
 
             {/* })}

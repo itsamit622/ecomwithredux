@@ -52,7 +52,7 @@ function UserLogin(props) {
         props.history.push("/cart")
     }
     else if(props.login=== true){
-        props.history.push("/home")
+        props.history.push("/")
 
     }
     // else if(props.login===true && props.cart.length>0){

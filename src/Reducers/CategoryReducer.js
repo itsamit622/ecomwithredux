@@ -3,8 +3,6 @@ const IntialState ={
     category:[]
 }
 
-    
-
 
 
 
@@ -18,6 +16,7 @@ function CategoryReducer(state = IntialState, action) {
 
         case LOAD_CATEGORIES:
             console.log("category",action.payload)
+            console.log("load payload",action.payload)
         //   const loadcontent = state.category.concat(action.payload);
           return { ...state, category: action.payload};
        case  DELETE_ITEM:

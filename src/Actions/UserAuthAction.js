@@ -17,6 +17,9 @@ export const Auth_Checker_Action2 = function (value) {
 
         dispatch(action);
       // } else alert("hello");
+    }).catch((error)=>{
+      console.log("error", error.response);
+      alert(error.response.data.message)
     });
   };
 };
